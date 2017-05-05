@@ -1,22 +1,11 @@
 package custompizza;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Toolkit;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 
 public class CustomPizza extends javax.swing.JFrame {
 
@@ -57,11 +46,12 @@ public class CustomPizza extends javax.swing.JFrame {
     JCheckBox[] topping = new JCheckBox[6];
 
 
+
     // constructor
 
     public CustomPizza() {
 
-        setTitle("Build your Custom Million Dollar Pizza Order!");
+        setTitle("Build your Custom Pizza Order!");
         setResizable(false);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -75,15 +65,14 @@ public class CustomPizza extends javax.swing.JFrame {
         // size panel with components
         // use GBL for the panel
         sizePanel.setLayout(new GridBagLayout());
-        sizePanel.setBorder(BorderFactory.createTitledBorder("Location"));
+        sizePanel.setBorder(BorderFactory.createTitledBorder("Size"));
 
-        smallRadioButton.setText("Front");
+        smallRadioButton.setText("Small");
 
         sizeButtonGroup.add(smallRadioButton);
         gridConstraints = new GridBagConstraints();
         gridConstraints.gridx = 0;
         gridConstraints.gridy = 0;
-        gridConstraints.gridwidth = 2;
         gridConstraints.anchor = GridBagConstraints.WEST;
         sizePanel.add(smallRadioButton, gridConstraints);
         smallRadioButton.addActionListener(new ActionListener() {
@@ -92,7 +81,7 @@ public class CustomPizza extends javax.swing.JFrame {
             }
         });
 
-        mediumRadioButton.setText("Body");
+        mediumRadioButton.setText("Medium");
         mediumRadioButton.setSelected(true);
         sizeButtonGroup.add(mediumRadioButton);
         gridConstraints = new GridBagConstraints();
@@ -106,7 +95,7 @@ public class CustomPizza extends javax.swing.JFrame {
             }
         });
 
-        largeRadioButton.setText("Rear          ");
+        largeRadioButton.setText("Large");
         largeRadioButton.setSelected(true);
         sizeButtonGroup.add(largeRadioButton);
         gridConstraints = new GridBagConstraints();
@@ -121,15 +110,13 @@ public class CustomPizza extends javax.swing.JFrame {
         });
 
         gridConstraints = new GridBagConstraints();
-        gridConstraints.gridx = 1;
+        gridConstraints.gridx = 0;
         gridConstraints.gridy = 0;
         getContentPane().add(sizePanel, gridConstraints);
         // end of size panel and components
 
-        ///////////////////////////////////////////////////////////////////
-
         crustPanel.setLayout(new GridBagLayout());
-        crustPanel.setBorder(BorderFactory.createTitledBorder("Engine type"));
+        crustPanel.setBorder(BorderFactory.createTitledBorder("Crust"));
 
         thinRadioButton.setText("Thin Crust");
         thinRadioButton.setSelected(true);
@@ -158,13 +145,10 @@ public class CustomPizza extends javax.swing.JFrame {
             }
         });
 
-
         gridConstraints = new GridBagConstraints();
         gridConstraints.gridx = 0;
-        gridConstraints.gridy = 0;
+        gridConstraints.gridy = 1;
         getContentPane().add(crustPanel, gridConstraints);
-
-        /////////////////////////////////////////////////////////////////////////////////
 
         toppingsPanel.setLayout(new GridBagLayout());
         toppingsPanel.setBorder(BorderFactory.createTitledBorder("Toppings"));
@@ -213,7 +197,7 @@ public class CustomPizza extends javax.swing.JFrame {
 
 
         gridConstraints = new GridBagConstraints();
-        gridConstraints.gridx = 2;
+        gridConstraints.gridx = 1;
         gridConstraints.gridy = 0;
         gridConstraints.gridwidth = 2;
         getContentPane().add(toppingsPanel, gridConstraints);
@@ -272,7 +256,7 @@ public class CustomPizza extends javax.swing.JFrame {
 
         getContentPane().setBackground(Color.YELLOW);
         //pack();
-        setSize(700, 400);
+        setSize(400, 300);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((int) (0.5 * (screenSize.width - getWidth())),
                 (int) (0.5 * (screenSize.height - getHeight())),
@@ -296,6 +280,12 @@ public class CustomPizza extends javax.swing.JFrame {
 
     // methods
 
+    public static void main(String[] args) {
+
+        new CustomPizza().setVisible(true);
+
+    }
+
     private void exitButtonActionPerformed(ActionEvent e) {
         // "Are you sure?"
         // "Do you want to save your work?"
@@ -315,6 +305,7 @@ public class CustomPizza extends javax.swing.JFrame {
                 message += topping[i].getText() + "\n";
             }
         }
+
         JOptionPane.showConfirmDialog(
                 null,
                 message,
@@ -340,17 +331,10 @@ public class CustomPizza extends javax.swing.JFrame {
         System.out.println("Size: " + pizzaSize);
     }
 
-
     private void exitForm(WindowEvent e) {
         // ask "are sure?"
         // ask "do you want to save this file?"
         System.exit(0); // normal exit, zero errors
-
-    }
-
-    public static void main(String[] args) {
-
-        new CustomPizza().setVisible(true);
 
     }
 
